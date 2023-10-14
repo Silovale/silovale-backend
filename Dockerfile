@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/api-0.0.1-SNAPSHOT.jar api.jar
+COPY --from=build /target/silovale-api-0.0.1-SNAPSHOT.jar silovale-api.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","api.jar"]
+ENTRYPOINT ["java","-jar","silovale-api.jar"]
