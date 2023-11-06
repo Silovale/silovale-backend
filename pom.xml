@@ -60,6 +60,13 @@
     <scope>test</scope>
 </dependency>
 
+<!-- Postgre SQL Driver-->
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.2.14</version>
+</dependency>
+
     <build>
         <plugins>
             <plugin>
