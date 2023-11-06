@@ -18,6 +18,27 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    //Verificación de cuenta //
+
+    public User verifyAccount(String email, String password) {
+        if (isEmptyOrWhitespace(email) || isEmptyOrWhitespace(password)) {
+            throw new IllegalArgumentException("Ingresa tu correo y contraseña, son campos obligatorios");
+        }
+    
+        User user = userRepository.findByEmail(email);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        } else {
+            throw new IllegalArgumentException("Correo o contraseña incorrectos");
+        }
+    }
+
+    private boolean isEmptyOrWhitespace(String value) {
+        return value == null || value.trim().isEmpty();
+    }
+
+    
+    
     public List<UserDTO> findAll() {
         final List<User> users = userRepository.findAll(Sort.by("id"));
         return users.stream()

@@ -1,5 +1,6 @@
 package com.silovale.silovale_api.model;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
@@ -9,14 +10,16 @@ public class UserDTO {
 
     private Long id;
 
+    @NotEmpty
     @NotNull
     @Size(max = 255)
     private String email;
 
-    @Size(max = 255)
+    @NotEmpty
+    @Size(min=8, message = "La contraseña debe tener al menos 8 carácteres")
     private String password;
 
-    @Size(max = 255)
+    @Size(max = 7, message = "Sólo se admiten 7 dígitos como máximo")
     private String dni;
 
     @Size(max = 255)
