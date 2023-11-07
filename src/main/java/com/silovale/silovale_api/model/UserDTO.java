@@ -18,8 +18,8 @@ public class UserDTO {
     @NotEmpty
     @Size(min=8, message = "La contraseña debe tener al menos 8 carácteres")
     private String password;
-
-    @Size(max = 7, message = "Sólo se admiten 7 dígitos como máximo")
+    
+    @Size(max = 255)
     private String dni;
 
     @Size(max = 255)
