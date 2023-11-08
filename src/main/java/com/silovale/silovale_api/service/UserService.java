@@ -79,7 +79,6 @@ public class UserService {
         userDTO.setLastname(user.getLastname());
         userDTO.setBusinessName(user.getBusinessName());
         userDTO.setAddress(user.getAddress());
-        userDTO.setRegistrationDate(user.getRegistrationDate());
         userDTO.setUserRol(user.getUserRol());
         return userDTO;
     }
@@ -93,7 +92,6 @@ public class UserService {
         user.setLastname(userDTO.getLastname());
         user.setBusinessName(userDTO.getBusinessName());
         user.setAddress(userDTO.getAddress());
-        user.setRegistrationDate(userDTO.getRegistrationDate());
         user.setUserRol(userDTO.getUserRol());
         return user;
     }

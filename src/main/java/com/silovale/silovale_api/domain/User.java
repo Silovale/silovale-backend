@@ -71,6 +71,24 @@ public class User {
     @LastModifiedDate
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
+    
+
+    public User(String email, String password, String dni, String ruc, String name, String lastname, String businessName, String address, Integer userRol) {
+        this.email = email;
+        this.password = password;
+        this.dni = dni;
+        this.ruc = ruc;
+        this.name = name;
+        this.lastname = lastname;
+        this.businessName = businessName;
+        this.address = address;
+
+    }
+
+
+    public User() {
+    }
+
 
     public Long getId() {
         return id;
