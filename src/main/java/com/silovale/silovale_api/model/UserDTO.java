@@ -16,7 +16,7 @@ public class UserDTO {
     private String email;
 
     @NotEmpty
-    @Size(min=8, message = "La contraseña debe tener al menos 8 carácteres")
+    @Size(min = 8)
     private String password;
     
     @Size(max = 255)
