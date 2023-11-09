@@ -91,7 +91,7 @@ public class UserService {
         return userDTO;
     }
 
-    private User mapToEntity(final UserDTO userDTO, final User user) {
+    User mapToEntity(final UserDTO userDTO, final User user) {
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setDni(userDTO.getDni());
