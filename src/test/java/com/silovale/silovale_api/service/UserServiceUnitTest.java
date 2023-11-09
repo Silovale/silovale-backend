@@ -18,6 +18,7 @@ import com.silovale.silovale_api.repos.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class UserServiceUnitTest {
 
     @Mock
@@ -35,7 +36,7 @@ public class UserServiceUnitTest {
     void testFindAll() {
         // Given
         List<User> users = new ArrayList<>();
-        users.add(new User("user1.com", "123456789","1234567", null, "Brayan", "Cruces", "Mybusiness", "Lima", 1));
+        users.add(new User("user1.com", "123456789","1234567", null, "Alexa", "Mendez", "Mybusiness", "Lima", 1));
         users.add(new User("user2@example.com", "1234567888","1234657", null, "Diana", "Chanta", "Mybusiness2", "Trujillo", 1));
         when(userRepository.findAll(Sort.by("id"))).thenReturn(users);
 
@@ -51,11 +52,11 @@ public class UserServiceUnitTest {
     @Test
     void testCreate(){
         //Given
-        UserDTO userDTO = new UserDTO();
+        UserDTO userDTO = new UserDTO(); 
         userDTO.setAddress("Lima");
         userDTO.setBusinessName("Negocio1");
         userDTO.setDni("1234567");
-        userDTO.setName("Brayan");
+        userDTO.setName("Patricia");
         userDTO.setEmail("user2@example.com");
         userDTO.setPassword("PerroGato");
         userDTO.setRuc("12345");

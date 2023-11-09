@@ -34,7 +34,7 @@ public class User {
     )
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String email;
 
     @Column

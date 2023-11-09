@@ -4,39 +4,27 @@ import com.silovale.silovale_api.domain.User;
 import com.silovale.silovale_api.model.UserDTO;
 import com.silovale.silovale_api.repos.UserRepository;
 import com.silovale.silovale_api.util.NotFoundException;
+
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-
+@Transactional
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(final UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     //Verificación de cuenta //
-
-    public User verifyAccount(String email, String password) {
-        if (isEmptyOrWhitespace(email) || isEmptyOrWhitespace(password)) {
-            throw new IllegalArgumentException("Ingresa tu correo y contraseña, son campos obligatorios");
-        }
-    
-        User user = userRepository.findByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
-        } else {
-            throw new IllegalArgumentException("Correo o contraseña incorrectos");
-        }
-    }
-
     private boolean isEmptyOrWhitespace(String value) {
         return value == null || value.trim().isEmpty();
     }
-
     
     
     public List<UserDTO> findAll() {
@@ -67,6 +55,26 @@ public class UserService {
 
     public void delete(final Long id) {
         userRepository.deleteById(id);
+    }
+
+    public User verifyAccount(String email, String password) {
+        if (isEmptyOrWhitespace(email) || isEmptyOrWhitespace(password)) {
+            throw new IllegalArgumentException("Ingresa tu correo y contraseña, son campos obligatorios");
+        }
+
+  List<User> existingUserByCount = userRepository.findByEmail(email);
+        if (!existingUserByCount.isEmpty()) {
+            User useremail = existingUserByCount.get(0);
+            if (useremail.getPassword().equals(password)) {
+                return useremail;
+            } else {
+                throw new IllegalStateException("Contraseña incorrecta");
+            }
+
+        } else {
+            throw new IllegalArgumentException("Correo o contraseña incorrectos");
+        }
+
     }
 
     private UserDTO mapToDTO(final User user, final UserDTO userDTO) {

@@ -1,5 +1,7 @@
 package com.silovale.silovale_api.model;
 
+
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -42,6 +44,9 @@ public class UserDTO {
 
 
     private Integer userRol;
+
+    
+
 
     public Long getId() {
         return id;
