@@ -57,6 +57,16 @@ public class Business {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    public Business (String businessName, String description, String address, String phone ){
+        this.businessName = businessName;
+        this.description = description;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public Business() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -105,7 +105,7 @@ public class UserServiceUnitTest {
         verify(userRepository, times(1)).save(existingUser);
 
         // Verifica que el método mapToEntity haya sido llamado con los argumentos correctos
-         assertEquals("NuevoNombre", existingUser.getName());
+        assertEquals("NuevoNombre", existingUser.getName());
         assertEquals("nuevo@email.com", existingUser.getEmail());
     }
 
@@ -164,9 +164,3 @@ public class UserServiceUnitTest {
         assertThrows(NotFoundException.class, () -> userService.get(userId));
     }
 }
-
-
-
-
-
-

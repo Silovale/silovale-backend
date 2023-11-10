@@ -11,25 +11,25 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Sort;
-import com.silovale.silovale_api.domain.Product;
-import com.silovale.silovale_api.model.ProductDTO;
-import com.silovale.silovale_api.repos.ProductRepository;
+import com.silovale.silovale_api.domain.Order;
+import com.silovale.silovale_api.model.OrderDTO;
+import com.silovale.silovale_api.repos.OrderRepository;
 import com.silovale.silovale_api.util.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ProductServiceUnitTest {
+public class OrderServiceUnitTest {
     
     @Mock
-    private ProductRepository productRepository;
+    private OrderRepository orderRepository;
 
-    private ProductService productService;
+    private OrderService orderService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        productService = new ProductService(productRepository);
+        orderService = new OrderService(orderRepository);
     }
 }
