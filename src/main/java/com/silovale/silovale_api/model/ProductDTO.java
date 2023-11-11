@@ -9,21 +9,18 @@ public class ProductDTO {
     private Long id;
 
     @NotNull
-    private Double price;
+    @Size(max = 100)
+    private String name;
 
     @NotNull
-    @Size(max = 255)
+    @Size(max = 10000)
     private String description;
 
     @NotNull
-    @Size(max = 255)
-    private String category;
-
-    @Size(max = 255)
-    private String image;
+    private Double price;
 
     @NotNull
-    private Long businessId;
+    private int stock;
 
     public Long getId() {
         return id;
@@ -33,12 +30,12 @@ public class ProductDTO {
         this.id = id;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getName() {
+        return name;
     }
 
-    public void setPrice(final Double price) {
-        this.price = price;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -49,28 +46,20 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setCategory(final String category) {
-        this.category = category;
+    public void setPrice(final Double price) {
+        this.price = price;
     }
 
-    public String getImage() {
-        return image;
+    public int getStock() {
+        return stock;
     }
 
-    public void setImage(final String image) {
-        this.image = image;
-    }
-
-    public Long getBusinessId() {
-        return businessId;
-    }
-
-    public void setBusinessId(final Long businessId) {
-        this.businessId = businessId;
+    public void setStock(final int stock) {
+        this.stock = stock;
     }
 
 }

@@ -15,7 +15,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Product {
@@ -35,16 +34,16 @@ public class Product {
     private Long id;
 
     @Column(nullable = false)
-    private Double price;
+    private String name;
 
     @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
-    private String category;
+    private Double price;
 
-    @Column
-    private String image;
+    @Column(nullable = false)
+    private int stock;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "business_id_id", nullable = false)
@@ -58,6 +57,16 @@ public class Product {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    public Product(String name, String description, Double price, int stock) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    public Product() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -66,12 +75,12 @@ public class Product {
         this.id = id;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getName() {
+        return name;
     }
 
-    public void setPrice(final Double price) {
-        this.price = price;
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -82,28 +91,20 @@ public class Product {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setCategory(final String category) {
-        this.category = category;
+    public void setPrice(final Double price) {
+        this.price = price;
     }
 
-    public String getImage() {
-        return image;
+    public int getStock() {
+        return stock;
     }
 
-    public void setImage(final String image) {
-        this.image = image;
-    }
-
-    public Business getBusinessId() {
-        return businessId;
-    }
-
-    public void setBusinessId(final Business businessId) {
-        this.businessId = businessId;
+    public void setStock(final int stock) {
+        this.stock = stock;
     }
 
     public OffsetDateTime getDateCreated() {
@@ -121,5 +122,4 @@ public class Product {
     public void setLastUpdated(final OffsetDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
-
 }

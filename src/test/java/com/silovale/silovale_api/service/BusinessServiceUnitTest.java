@@ -55,7 +55,7 @@ public class BusinessServiceUnitTest{
 
     @Test
     void testCreate(){
-        //Given
+        // Given
         BusinessDTO businessDTO = new BusinessDTO();
         businessDTO.setBusinessName("Tienda");
         businessDTO.setDescription("Mi descripcion");
@@ -78,7 +78,7 @@ public class BusinessServiceUnitTest{
 
     @Test
     public void testUpdate(){
-        //Datos de prueba 
+        // Datos de prueba 
         Long businessId = (long) 10000;
         BusinessDTO businessDTO = new BusinessDTO();
         businessDTO.setBusinessName("Amazon");
@@ -97,7 +97,7 @@ public class BusinessServiceUnitTest{
         verify(businessRepository, times(1)).findById(businessId);
         verify(businessRepository, times(1)).save(existingBusiness);
 
-        //Verifica que el método mapToEntity haya sido llamado con los argumentos correctos
+        // Verifica que el método mapToEntity haya sido llamado con los argumentos correctos
         assertEquals("Amazon", existingBusiness.getBusinessName());
         assertEquals("Mi descripcion", existingBusiness.getDescription());
     }
@@ -140,8 +140,8 @@ public class BusinessServiceUnitTest{
         verify(businessRepository, times(1)).findById(businessId);
 
         // Verifica que el resultado sea el esperado
-        assertEquals("Mercado libre", result.getBusinessName());  // Corregir aquí
-        assertEquals("Mi otra descripcion", result.getDescription());  // Corregir aquí
+        assertEquals("Mercado libre", result.getBusinessName());
+        assertEquals("Mi otra descripcion", result.getDescription());  
     }
 
 

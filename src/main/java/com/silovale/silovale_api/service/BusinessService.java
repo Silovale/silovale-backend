@@ -61,7 +61,6 @@ public class BusinessService {
         business.setDescription(businessDTO.getDescription());
         business.setAddress(businessDTO.getAddress());
         business.setPhone(businessDTO.getPhone());
-
         return business;
     }
 
