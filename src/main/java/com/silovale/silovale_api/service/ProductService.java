@@ -1,9 +1,7 @@
 package com.silovale.silovale_api.service;
 
-import com.silovale.silovale_api.domain.Business;
 import com.silovale.silovale_api.domain.Product;
 import com.silovale.silovale_api.model.ProductDTO;
-import com.silovale.silovale_api.repos.BusinessRepository;
 import com.silovale.silovale_api.repos.ProductRepository;
 import com.silovale.silovale_api.util.NotFoundException;
 import java.util.List;
