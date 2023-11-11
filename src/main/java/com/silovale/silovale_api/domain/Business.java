@@ -1,4 +1,5 @@
 package com.silovale.silovale_api.domain;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;

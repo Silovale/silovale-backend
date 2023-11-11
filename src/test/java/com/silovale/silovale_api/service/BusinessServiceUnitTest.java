@@ -68,10 +68,10 @@ public class BusinessServiceUnitTest{
         when(businessRepository.save(any(Business.class))).thenReturn(businessToReturnFromRepository);
 
 
-        //When
+        // When
         Long result = businessService.create(businessDTO);
 
-        //Then
+        // Then
         assertInstanceOf(Long.class, result);
     }
 
