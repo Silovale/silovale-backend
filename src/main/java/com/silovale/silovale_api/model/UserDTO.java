@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Size;
 
 
 public class UserDTO {
-
     private Long id;
 
     @Email
@@ -18,13 +17,13 @@ public class UserDTO {
     private String email;
 
     @NotEmpty
-    @Size(min = 8)
+    @Size(min = 20)
     private String password;
     
-    @Size(max = 255)
+    @Size(max = 8)
     private String dni;
 
-    @Size(max = 255)
+    @Size(max = 12)
     private String ruc;
 
     @Size(max = 255)
@@ -39,12 +38,7 @@ public class UserDTO {
     @Size(max = 255)
     private String address;
 
-
-
     private Integer userRol;
-
-    
-
 
     public Long getId() {
         return id;
@@ -125,5 +119,4 @@ public class UserDTO {
     public void setUserRol(final Integer userRol) {
         this.userRol = userRol;
     }
-
 }

@@ -4,9 +4,7 @@ import com.silovale.silovale_api.domain.User;
 import com.silovale.silovale_api.model.UserDTO;
 import com.silovale.silovale_api.repos.UserRepository;
 import com.silovale.silovale_api.util.NotFoundException;
-
 import jakarta.transaction.Transactional;
-
 import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

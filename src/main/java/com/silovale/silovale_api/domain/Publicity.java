@@ -7,18 +7,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
 @Entity
-@Table(name = "\"order\"")
 @EntityListeners(AuditingEntityListener.class)
-public class Order {
-
+public class Publicity {
+    
     @Id
     @Column(nullable = false, updatable = false)
     @SequenceGenerator(
@@ -33,14 +30,17 @@ public class Order {
     )
     private Long id;
 
-    @Column(nullable =  false)
-    private int idOrder;
+    @Column(nullable = false)
+    private String namePublicity;
 
     @Column(nullable = false)
-    private String dateOrder;
+    private String descriptionPublicity;
 
     @Column(nullable = false)
-    private double total;
+    private String startDate;
+
+    @Column(nullable = false)
+    private String endDate;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -50,14 +50,15 @@ public class Order {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
-    public Order (int idOrder, String dateOrder, double total){
-        this.idOrder = idOrder;
-        this.dateOrder = dateOrder;
-        this.total = total;
+    public Publicity (String namePublicity, String descriptionPublicity, String startDate, String endDate){
+        this.namePublicity = namePublicity;
+        this.descriptionPublicity = descriptionPublicity;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
-    public Order() {
-        
+    public Publicity (){
+
     }
 
     public Long getId() {
@@ -68,28 +69,36 @@ public class Order {
         this.id = id;
     }
 
-    public int getIdOrder(){
-        return idOrder;
+    public String getNamePublicity(){
+        return namePublicity;
     }
 
-    public void setIdOrder(final int idOrder){
-        this.idOrder = idOrder;
+    public void setNamePublicity(final String namePublicity){
+        this.namePublicity = namePublicity;
     }
 
-    public String getDateOrder() {
-        return dateOrder;
+    public String getDescriptionPublicity(){
+        return descriptionPublicity;
     }
 
-    public void setDateOrder(final String dateOrder) {
-        this.dateOrder = dateOrder;
+    public void setDescriptionPublicity(final String descriptionPublicity){
+        this.descriptionPublicity = descriptionPublicity;
     }
 
-    public double getTotal() {
-        return total;
+    public String getstartDate (){
+        return startDate;
     }
 
-    public void setTotal(final double total) {
-        this.total = total;
+    public void setStartDate (final String startDate){
+        this.startDate = startDate;
+    }
+
+    public String getEndDate(){
+        return endDate;
+    }
+
+    public void setEndDate(final String endDate){
+        this.endDate = endDate;
     }
 
     public OffsetDateTime getDateCreated() {

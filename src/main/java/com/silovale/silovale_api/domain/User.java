@@ -34,34 +34,34 @@ public class User {
     )
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
-    @Column
+    @Column(nullable = false)
     private String dni;
 
-    @Column
+    @Column(nullable = false)
     private String ruc;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String lastname;
 
-    @Column
+    @Column(nullable = false)
     private String businessName;
 
-    @Column
+    @Column(nullable = false)
     private String address;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate registrationDate;
 
-    @Column
+    @Column(nullable = false)
     private Integer userRol;
 
     @CreatedDate
@@ -85,10 +85,8 @@ public class User {
 
     }
 
-
     public User() {
     }
-
 
     public Long getId() {
         return id;
