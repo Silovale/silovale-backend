@@ -1,10 +1,8 @@
 package com.silovale.silovale_api.service;
 
 import com.silovale.silovale_api.domain.Order;
-import com.silovale.silovale_api.domain.Product;
 import com.silovale.silovale_api.model.OrderDTO;
 import com.silovale.silovale_api.repos.OrderRepository;
-import com.silovale.silovale_api.repos.ProductRepository;
 import com.silovale.silovale_api.util.NotFoundException;
 import java.util.List;
 import org.springframework.data.domain.Sort;
@@ -15,12 +13,9 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final ProductRepository productRepository;
 
-    public OrderService(final OrderRepository orderRepository,
-            final ProductRepository productRepository) {
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
+    public OrderService(final OrderRepository orderRepository) {
+            this.orderRepository = orderRepository;
     }
 
     public List<OrderDTO> findAll() {
@@ -54,21 +49,16 @@ public class OrderService {
     }
 
     private OrderDTO mapToDTO(final Order order, final OrderDTO orderDTO) {
-        orderDTO.setId(order.getId());
-        orderDTO.setAmount(order.getAmount());
-        orderDTO.setQuantity(order.getQuantity());
-        orderDTO.setBuyerId(order.getBuyerId());
-        orderDTO.setProductId(order.getProductId() == null ? null : order.getProductId().getId());
+        orderDTO.setIdOrder(order.getIdOrder());
+        orderDTO.setDateOrder(order.getDateOrder());
+        orderDTO.setTotal(order.getTotal());
         return orderDTO;
     }
 
     private Order mapToEntity(final OrderDTO orderDTO, final Order order) {
-        order.setAmount(orderDTO.getAmount());
-        order.setQuantity(orderDTO.getQuantity());
-        order.setBuyerId(orderDTO.getBuyerId());
-        final Product productId = orderDTO.getProductId() == null ? null : productRepository.findById(orderDTO.getProductId())
-                .orElseThrow(() -> new NotFoundException("productId not found"));
-        order.setProductId(productId);
+        order.setIdOrder(orderDTO.getIdOrder());
+        order.setDateOrder(orderDTO.getDateOrder());
+        order.setTotal(orderDTO.getTotal());
         return order;
     }
 

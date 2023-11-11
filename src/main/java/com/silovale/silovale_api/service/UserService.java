@@ -4,20 +4,27 @@ import com.silovale.silovale_api.domain.User;
 import com.silovale.silovale_api.model.UserDTO;
 import com.silovale.silovale_api.repos.UserRepository;
 import com.silovale.silovale_api.util.NotFoundException;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-
+@Transactional
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(final UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    //Verificación de cuenta //
+    private boolean isEmptyOrWhitespace(String value) {
+        return value == null || value.trim().isEmpty();
+    }
+    
+    
     public List<UserDTO> findAll() {
         final List<User> users = userRepository.findAll(Sort.by("id"));
         return users.stream()
@@ -48,8 +55,27 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public User verifyAccount(String email, String password) {
+        if (isEmptyOrWhitespace(email) || isEmptyOrWhitespace(password)) {
+            throw new IllegalArgumentException("Ingresa tu correo y contraseña, son campos obligatorios");
+        }
+
+  List<User> existingUserByCount = userRepository.findByEmail(email);
+        if (!existingUserByCount.isEmpty()) {
+            User useremail = existingUserByCount.get(0);
+            if (useremail.getPassword().equals(password)) {
+                return useremail;
+            } else {
+                throw new IllegalStateException("Contraseña incorrecta");
+            }
+
+        } else {
+            throw new IllegalArgumentException("Correo o contraseña incorrectos");
+        }
+
+    }
+
     private UserDTO mapToDTO(final User user, final UserDTO userDTO) {
-        userDTO.setId(user.getId());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
         userDTO.setDni(user.getDni());
@@ -58,12 +84,11 @@ public class UserService {
         userDTO.setLastname(user.getLastname());
         userDTO.setBusinessName(user.getBusinessName());
         userDTO.setAddress(user.getAddress());
-        userDTO.setRegistrationDate(user.getRegistrationDate());
         userDTO.setUserRol(user.getUserRol());
         return userDTO;
     }
 
-    private User mapToEntity(final UserDTO userDTO, final User user) {
+    User mapToEntity(final UserDTO userDTO, final User user) {
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setDni(userDTO.getDni());
@@ -72,7 +97,6 @@ public class UserService {
         user.setLastname(userDTO.getLastname());
         user.setBusinessName(userDTO.getBusinessName());
         user.setAddress(userDTO.getAddress());
-        user.setRegistrationDate(userDTO.getRegistrationDate());
         user.setUserRol(userDTO.getUserRol());
         return user;
     }

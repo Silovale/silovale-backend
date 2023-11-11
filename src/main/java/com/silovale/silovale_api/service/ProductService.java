@@ -1,9 +1,7 @@
 package com.silovale.silovale_api.service;
 
-import com.silovale.silovale_api.domain.Business;
 import com.silovale.silovale_api.domain.Product;
 import com.silovale.silovale_api.model.ProductDTO;
-import com.silovale.silovale_api.repos.BusinessRepository;
 import com.silovale.silovale_api.repos.ProductRepository;
 import com.silovale.silovale_api.util.NotFoundException;
 import java.util.List;
@@ -15,12 +13,9 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final BusinessRepository businessRepository;
 
-    public ProductService(final ProductRepository productRepository,
-            final BusinessRepository businessRepository) {
+    public ProductService(final ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.businessRepository = businessRepository;
     }
 
     public List<ProductDTO> findAll() {
@@ -54,23 +49,18 @@ public class ProductService {
     }
 
     private ProductDTO mapToDTO(final Product product, final ProductDTO productDTO) {
-        productDTO.setId(product.getId());
-        productDTO.setPrice(product.getPrice());
+        productDTO.setName(product.getName());
         productDTO.setDescription(product.getDescription());
-        productDTO.setCategory(product.getCategory());
-        productDTO.setImage(product.getImage());
-        productDTO.setBusinessId(product.getBusinessId() == null ? null : product.getBusinessId().getId());
+        productDTO.setPrice(product.getPrice());
+        productDTO.setStock(product.getStock());
         return productDTO;
     }
 
     private Product mapToEntity(final ProductDTO productDTO, final Product product) {
+        product.setName(productDTO.getName());
         product.setPrice(productDTO.getPrice());
         product.setDescription(productDTO.getDescription());
-        product.setCategory(productDTO.getCategory());
-        product.setImage(productDTO.getImage());
-        final Business businessId = productDTO.getBusinessId() == null ? null : businessRepository.findById(productDTO.getBusinessId())
-                .orElseThrow(() -> new NotFoundException("businessId not found"));
-        product.setBusinessId(businessId);
+        product.setStock(productDTO.getStock());
         return product;
     }
 

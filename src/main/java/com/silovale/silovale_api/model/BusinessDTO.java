@@ -18,7 +18,7 @@ public class BusinessDTO {
     @Size(max = 255)
     private String address;
 
-    @Size(max = 255)
+    @Size(max = 9)
     private String phone;
 
     @NotNull

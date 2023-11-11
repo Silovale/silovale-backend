@@ -1,25 +1,29 @@
 package com.silovale.silovale_api.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.time.LocalDate;
+
 
 
 public class UserDTO {
-
     private Long id;
 
+    @Email
+    @NotEmpty
     @NotNull
     @Size(max = 255)
     private String email;
 
-    @Size(max = 255)
+    @NotEmpty
+    @Size(min = 20)
     private String password;
-
-    @Size(max = 255)
+    
+    @Size(max = 8)
     private String dni;
 
-    @Size(max = 255)
+    @Size(max = 12)
     private String ruc;
 
     @Size(max = 255)
@@ -33,8 +37,6 @@ public class UserDTO {
 
     @Size(max = 255)
     private String address;
-
-    private LocalDate registrationDate;
 
     private Integer userRol;
 
@@ -110,14 +112,6 @@ public class UserDTO {
         this.address = address;
     }
 
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(final LocalDate registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
     public Integer getUserRol() {
         return userRol;
     }
@@ -125,5 +119,4 @@ public class UserDTO {
     public void setUserRol(final Integer userRol) {
         this.userRol = userRol;
     }
-
 }
