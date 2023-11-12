@@ -46,10 +46,6 @@ public class Business {
     @Column
     private String phone;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id_id", nullable = false, unique = true)
-    private User userId;
-
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private OffsetDateTime dateCreated;
@@ -57,6 +53,17 @@ public class Business {
     @LastModifiedDate
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
+
+    public Business (String businessName, String description, String address, String phone ){
+        this.businessName = businessName;
+        this.description = description;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public Business() {
+        
+    }
 
     public Long getId() {
         return id;
@@ -96,14 +103,6 @@ public class Business {
 
     public void setPhone(final String phone) {
         this.phone = phone;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(final User userId) {
-        this.userId = userId;
     }
 
     public OffsetDateTime getDateCreated() {

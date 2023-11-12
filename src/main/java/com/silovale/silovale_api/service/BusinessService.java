@@ -1,26 +1,22 @@
 package com.silovale.silovale_api.service;
 
 import com.silovale.silovale_api.domain.Business;
-import com.silovale.silovale_api.domain.User;
 import com.silovale.silovale_api.model.BusinessDTO;
 import com.silovale.silovale_api.repos.BusinessRepository;
-import com.silovale.silovale_api.repos.UserRepository;
 import com.silovale.silovale_api.util.NotFoundException;
-import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
 public class BusinessService {
 
     private final BusinessRepository businessRepository;
-    private final UserRepository userRepository;
 
-    public BusinessService(final BusinessRepository businessRepository,
-            final UserRepository userRepository) {
+    public BusinessService(final BusinessRepository businessRepository) {
         this.businessRepository = businessRepository;
-        this.userRepository = userRepository;
     }
 
     public List<BusinessDTO> findAll() {
@@ -54,12 +50,10 @@ public class BusinessService {
     }
 
     private BusinessDTO mapToDTO(final Business business, final BusinessDTO businessDTO) {
-        businessDTO.setId(business.getId());
         businessDTO.setBusinessName(business.getBusinessName());
         businessDTO.setDescription(business.getDescription());
         businessDTO.setAddress(business.getAddress());
         businessDTO.setPhone(business.getPhone());
-        businessDTO.setUserId(business.getUserId() == null ? null : business.getUserId().getId());
         return businessDTO;
     }
 
@@ -68,9 +62,6 @@ public class BusinessService {
         business.setDescription(businessDTO.getDescription());
         business.setAddress(businessDTO.getAddress());
         business.setPhone(businessDTO.getPhone());
-        final User userId = businessDTO.getUserId() == null ? null : userRepository.findById(businessDTO.getUserId())
-                .orElseThrow(() -> new NotFoundException("userId not found"));
-        business.setUserId(userId);
         return business;
     }
 

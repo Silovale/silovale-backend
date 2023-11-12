@@ -1,25 +1,16 @@
 package com.silovale.silovale_api.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
-import java.time.OffsetDateTime;
+import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.OffsetDateTime;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Product {
-
+public class Publicity {
+    
     @Id
     @Column(nullable = false, updatable = false)
     @SequenceGenerator(
@@ -35,20 +26,16 @@ public class Product {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String namePublicity;
 
     @Column(nullable = false)
-    private String description;
+    private String descriptionPublicity;
 
     @Column(nullable = false)
-    private Double price;
+    private String startDate;
 
     @Column(nullable = false)
-    private int stock;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "business_id_id", nullable = false)
-    private Business businessId;
+    private String endDate;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -58,15 +45,15 @@ public class Product {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
-    public Product(String name, String description, Double price, int stock) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
+    public Publicity (String namePublicity, String descriptionPublicity, String startDate, String endDate){
+        this.namePublicity = namePublicity;
+        this.descriptionPublicity = descriptionPublicity;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
-    public Product() {
-        
+    public Publicity (){
+
     }
 
     public Long getId() {
@@ -77,36 +64,36 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNamePublicity(){
+        return namePublicity;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setNamePublicity(final String namePublicity){
+        this.namePublicity = namePublicity;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptionPublicity(){
+        return descriptionPublicity;
     }
 
-    public void setDescription(final String description) {
-        this.description = description;
+    public void setDescriptionPublicity(final String descriptionPublicity){
+        this.descriptionPublicity = descriptionPublicity;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getstartDate (){
+        return startDate;
     }
 
-    public void setPrice(final Double price) {
-        this.price = price;
+    public void setStartDate (final String startDate){
+        this.startDate = startDate;
     }
 
-    public int getStock() {
-        return stock;
+    public String getEndDate(){
+        return endDate;
     }
 
-    public void setStock(final int stock) {
-        this.stock = stock;
+    public void setEndDate(final String endDate){
+        this.endDate = endDate;
     }
 
     public OffsetDateTime getDateCreated() {

@@ -1,62 +1,55 @@
 package com.silovale.silovale_api.model;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Column;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.OffsetDateTime;
 
 
 public class OrderDTO {
 
     private Long id;
 
-    @NotNull
-    private Integer amount;
+    @Column(nullable =  false)
+    private int idOrder;
 
-    @NotNull
-    private Integer quantity;
+    @Column(nullable = false)
+    private String dateOrder;
 
-    @NotNull
-    private Integer buyerId;
+    @Column(nullable = false)
+    private double total;
 
-    @NotNull
-    private Long productId;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private OffsetDateTime dateCreated;
+
 
     public Long getId() {
         return id;
     }
 
-    public void setId(final Long id) {
-        this.id = id;
+    public int getIdOrder(){
+        return idOrder;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public void setIdOrder(final int idOrder){
+        this.idOrder = idOrder;
+    }
+    
+    public String getDateOrder() {
+        return dateOrder;
     }
 
-    public void setAmount(final Integer amount) {
-        this.amount = amount;
+    public void setDateOrder(final String dateOrder) {
+        this.dateOrder = dateOrder;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public double getTotal() {
+        return total;
     }
 
-    public void setQuantity(final Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Integer getBuyerId() {
-        return buyerId;
-    }
-
-    public void setBuyerId(final Integer buyerId) {
-        this.buyerId = buyerId;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(final Long productId) {
-        this.productId = productId;
+    public void setTotal(final double total) {
+        this.total = total;
     }
 
 }

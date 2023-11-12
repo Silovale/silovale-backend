@@ -36,18 +36,14 @@ public class Order {
     )
     private Long id;
 
-    @Column(nullable = false)
-    private Integer amount;
+    @Column(nullable =  false)
+    private int idOrder;
 
     @Column(nullable = false)
-    private Integer quantity;
+    private String dateOrder;
 
     @Column(nullable = false)
-    private Integer buyerId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id_id", nullable = false)
-    private Product productId;
+    private double total;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -57,6 +53,16 @@ public class Order {
     @Column(nullable = false)
     private OffsetDateTime lastUpdated;
 
+    public Order (int idOrder, String dateOrder, double total){
+        this.idOrder = idOrder;
+        this.dateOrder = dateOrder;
+        this.total = total;
+    }
+
+    public Order() {
+        
+    }
+
     public Long getId() {
         return id;
     }
@@ -65,36 +71,28 @@ public class Order {
         this.id = id;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public int getIdOrder(){
+        return idOrder;
     }
 
-    public void setAmount(final Integer amount) {
-        this.amount = amount;
+    public void setIdOrder(final int idOrder){
+        this.idOrder = idOrder;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public String getDateOrder() {
+        return dateOrder;
     }
 
-    public void setQuantity(final Integer quantity) {
-        this.quantity = quantity;
+    public void setDateOrder(final String dateOrder) {
+        this.dateOrder = dateOrder;
     }
 
-    public Integer getBuyerId() {
-        return buyerId;
+    public double getTotal() {
+        return total;
     }
 
-    public void setBuyerId(final Integer buyerId) {
-        this.buyerId = buyerId;
-    }
-
-    public Product getProductId() {
-        return productId;
-    }
-
-    public void setProductId(final Product productId) {
-        this.productId = productId;
+    public void setTotal(final double total) {
+        this.total = total;
     }
 
     public OffsetDateTime getDateCreated() {
@@ -112,5 +110,4 @@ public class Order {
     public void setLastUpdated(final OffsetDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
-
 }
