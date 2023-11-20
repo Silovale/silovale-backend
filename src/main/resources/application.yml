@@ -20,3 +20,10 @@ spring:
           new_generator_mappings: true
 springdoc:
   pathsToMatch: /api/**
+
+email:
+  sender: silovaleoficial@gmail.com
+  password: pyqlavlscjycnfnr
+
+server:
+  port: 3000
